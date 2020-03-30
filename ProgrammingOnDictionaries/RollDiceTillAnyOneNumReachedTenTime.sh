@@ -1,8 +1,14 @@
 #!/bin/bash -x
 
-count=0;
+declare -A diceNum
+# VARIABLES
+count=1;
+
 while [ $count != 10 ]
 do
-	echo $((RANDOM%6 + 1))
-	((count++));
+	diceNum[$count]=$((RANDOM%6 + 1))
+	((count++))
 done
+
+echo ${diceNum[@]}
+echo ${!diceNum[@]}
