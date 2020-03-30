@@ -1,6 +1,6 @@
 #!/bin/bash	-x
 
-function	getSecLargestNum() {
+function getSecLargestNum() {
 		randomNums=("$@");
 		local maxNum=${randomNums[0]};
 		local secMaxNum=0;
@@ -9,14 +9,14 @@ function	getSecLargestNum() {
 		do
 			if [ ${randomNums[count]} -gt $maxNum ];
 			then
-					secMaxNum=$maxNum;
-					maxNum=${randomNums[count]};
+				secMaxNum=$maxNum;
+				maxNum=${randomNums[count]};
 			elif [ ${randomNums[count]} -gt $secMaxNum ];
 			then
-					secMaxNum=${randomNums[count]};
+				secMaxNum=${randomNums[count]};
 			fi
 		done
-		echo	$secMaxNum
+		echo $secMaxNum
 }
 
 function getSecSmallestNum() {
@@ -26,34 +26,34 @@ function getSecSmallestNum() {
 
 		for (( count=0; count < ${#randomNums[@]}; count++ ))
 		do
-			if	[ ${randomNums[count]} -lt $minNum ];
+			if [ ${randomNums[count]} -lt $minNum ];
 			then
-					secMinNum=$minNum;
-					minNum=${randomNums[count]};
+				secMinNum=$minNum;
+				minNum=${randomNums[count]};
 			elif [[ ${randomNums[count]} -gt $minNum && ${randomNums[count]} -lt $secMinNum ]];
 			then
-					secMinNum=${randomNums[count]};
+				secMinNum=${randomNums[count]};
 			fi
 		done
-		echo	$secMinNum
+		echo $secMinNum
 }
 
 function getRandomThreeDigitNum() {
-		for	((	counter=0;	counter < 10;	counter++	))
+		for (( counter=0;	counter < 10; counter++ ))
 		do
 			result=$((RANDOM%1000))
-			if	[	$result	-ge	100	];
+			if [ $result -ge 100 ];
 			then
-					randomNums[((counter))]=$result
+				randomNums[((counter))]=$result
 			else
-					((counter--))
+				((counter--))
 			fi
 		done
-		echo	${randomNums[@]}
+		echo ${randomNums[@]}
 }
 
 randomNums="$( getRandomThreeDigitNum )"
-secLargestNum="$( getSecLargestNum	${randomNums[@]} )"
-secSmallestNum="$( getSecSmallestNum	${randomNums[@]} )"
-echo	$secLargestNum
-echo	$secSmallestNum
+secLargestNum="$( getSecLargestNum ${randomNums[@]} )"
+secSmallestNum="$( getSecSmallestNum ${randomNums[@]} )"
+echo $secLargestNum
+echo $secSmallestNum
